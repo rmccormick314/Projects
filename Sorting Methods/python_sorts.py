@@ -1,3 +1,6 @@
+import numpy as np
+import time
+
 def swap_elements(array, position_one, position_two):
     temp_holder = array[position_one]
 
@@ -62,74 +65,78 @@ def merge_sort(array):
             k += 1
 
 def partition(array, start, end):
-    pivot = array[end // 2]
+    pivot_index = start
+    pivot = array[pivot_index]
 
-    i = (start - 1)
-    j = start
+    while start < end:
+        while start < len(array) and array[start] <= pivot:
+            start += 1
 
-    while (j <= end):
-        if (array[j] < pivot):
-            i += 1
-            swap_elements(array, i, j)
-        j += 1
+        while array[end] > pivot:
+            end -= 1
 
-    swap_elements(array, i+1, end)
-    return(i + 1)
+        if(start < end):
+            array[start], array[end] = array[end], array[start]
 
-def quick_sort(array, start, end):
+    array[end], array[pivot_index] = array[pivot_index], array[end]
 
+    return end
+
+def quick_sort(array):
+    quick_sort_helper(array, 0, len(array)-1)
+
+def quick_sort_helper(array, start, end):
     if (start < end):
         partition_index = partition(array, start, end)
 
-        quick_sort(array, start, partition_index-1)
-        quick_sort(array, partition_index+1, end)
+        quick_sort_helper(array, start, partition_index - 1)
+        quick_sort_helper(array, partition_index+1, end)
 
 def bubble_sort(array):
-    i = len(array)
-    j = k = 0
+    n = len(array)
 
-    while(j < i):
-        while (k < (i - j - 1)):
-            if (array[k] > array[k+1]):
-                swap_elements(array, k, k+1)
-            k += 1
-        j += 1
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if (array[j] > array[j+1]):
+                swap_elements(array, j+1, j)
+
+def array_order_test(array):
+    in_order = True
+    i = 0
+    while (i < len(array) - 1):
+        if (array[i] > array[i+1]):
+            return False
+        i += 1
+    return in_order
 
 def test_sorts():
-    array = [6, 3, 1, 2, 4, 5, 12, 69, 420, 7]
-    print("Base Array:")
-    print(array)
+    sorting_methods = [insertion_sort, selection_sort, merge_sort, quick_sort, bubble_sort]
+
+    items_per_array = 1000000
+
+    print()
+    print("Testing sorts with " + str(items_per_array) + " size arrays.")
     print()
 
-    test_array_insertion = array
-    insertion_sort(test_array_insertion)
-    print("Insertion Sort:")
-    print(test_array_insertion)
+    x = 0
+    while (x < len(sorting_methods)):
+        test_array = np.random.randint(1, 100, items_per_array)
+
+        start_time = time.time()
+        sorting_methods[x](test_array)
+        end_time = time.time()
+
+        total_time = end_time - start_time
+
+        if (array_order_test(test_array)):
+            print(str(sorting_methods[x]) + " PASSED in " + str(total_time))
+        else:
+            print(str(sorting_methods[x]) + " FAILED")
+
+        x += 1
+
     print()
+    print("Testing completed.")
 
-    test_array_selection = array
-    selection_sort(test_array_selection)
-    print("Selection Sort:")
-    print(test_array_selection)
-    print()
-
-    test_array_merge = array
-    merge_sort(test_array_merge)
-    print("Merge Sort:")
-    print(test_array_merge)
-    print()
-
-    test_array_quick = array
-    quick_sort(test_array_quick, 0, len(test_array_quick)-1)
-    print("Quick Sort:")
-    print(test_array_quick)
-    print()
-
-    test_array_bubble = array
-    bubble_sort(test_array_bubble)
-    print("Bubble Sort:")
-    print(test_array_bubble)
-    print()
-
-
-test_sorts()
+if __name__ == "__main__":
+    test_sorts()
