@@ -112,7 +112,7 @@ def array_order_test(array):
 def test_sorts():
     sorting_methods = [insertion_sort, selection_sort, merge_sort, quick_sort, bubble_sort]
 
-    items_per_array = 1000000
+    items_per_array = 25000
 
     print()
     print("Testing sorts with " + str(items_per_array) + " size arrays.")
