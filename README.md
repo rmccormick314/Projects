@@ -1,5 +1,5 @@
 # Projects
- Personal programming projects, completed on my own time for my own interests.
+ Personal programming projects, of varying functionality.
 
 ## Project Directory
 | Project Name | Description |
