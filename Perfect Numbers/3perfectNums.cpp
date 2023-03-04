@@ -44,7 +44,7 @@ int main()
     }
     else
     {
-      printf("\r%d isn't perfect..", n);
+      printf("\r%lld isn't perfect..", n);
       fflush(stdout);
     }
 

@@ -1,5 +1,5 @@
 CC=g++
-PARAMS=-std=c++1y
+PARAMS=-std=c++1y -lgmp -lgmpxx
 TARGETS=dev
 
 all: $(TARGETS)

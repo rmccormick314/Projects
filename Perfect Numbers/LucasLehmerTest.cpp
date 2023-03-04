@@ -29,7 +29,12 @@ mpz_class generateMersenneNum(mpz_class n)
   return MersenneNum;
 }
 
-bool isPrimeLL(mpz_class p) {
+bool isPrimeLL(mpz_class p)
+{
+  if(p == 2)
+  {
+    return true;
+  }
 
   // generate the number
   mpz_class checkNumber = generateMersenneNum(p);
@@ -53,7 +58,12 @@ bool isPrime(mpz_class n)
 
   // 0 and 1 are not prime numbers
   if (n == 0 || n == 1) {
-    is_prime = false;
+    return false;
+  }
+
+  if (n == 2)
+  {
+    return true;
   }
 
 
@@ -63,8 +73,7 @@ bool isPrime(mpz_class n)
   {
     if (n % i == 0)
     {
-      is_prime = false;
-      break;
+      return false;
     }
 
     ++i;
@@ -72,8 +81,6 @@ bool isPrime(mpz_class n)
 
   return is_prime;
 }
-
-
 
 mpz_class generatePerfectNum(mpz_class n)
 {

@@ -64,7 +64,7 @@ int main()
     }
     else
     {
-      printf("\rChecking %d...", n);
+      printf("\rChecking %lld...", n);
       fflush(stdout);
     }
 
