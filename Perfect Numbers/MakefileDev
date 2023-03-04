@@ -1,0 +1,11 @@
+CC=g++
+PARAMS=-std=c++1y
+TARGETS=dev
+
+all: $(TARGETS)
+
+dev:
+	$(CC) dev.cpp -o $@ $(PARAMS)
+
+clean:
+	rm $(TARGETS)
