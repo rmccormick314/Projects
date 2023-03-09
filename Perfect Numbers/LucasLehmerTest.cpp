@@ -1,3 +1,6 @@
+// Richard McCormick
+
+// Import dependencies
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -9,8 +12,10 @@
 #include <iomanip>
 #include <cmath>
 
+// Establish namespace
 using namespace std;
 
+// Establish variables
 mpz_class n = 1;
 mpz_class p = 0;
 mpz_class mersenne_num = 0;
@@ -19,6 +24,8 @@ mpz_class perfect_num = 0;
 int perfectNumbersFound = 0;
 mpz_class lastDigit = 0;
 
+// Function: generateMersenneNum
+// Generates a Mersenne Number from a given n
 mpz_class generateMersenneNum(mpz_class n)
 {
   mpz_class MersenneNum = 0;
@@ -29,6 +36,8 @@ mpz_class generateMersenneNum(mpz_class n)
   return MersenneNum;
 }
 
+// Function: isPrimeLL
+// Uses the Lucas-Lehmer Test to determine if a Mersenne Number is prime
 bool isPrimeLL(mpz_class p)
 {
   if(p == 2)
@@ -45,13 +54,17 @@ bool isPrimeLL(mpz_class p)
   // Generate the rest (p-2) terms
   // of the series.
   for (int i = 1; i < p - 1; i++)
+  {
     nextval = (nextval * nextval - 2) % checkNumber;
+  }
 
   // now if the (p-1)th term is
   // 0 return true else false.
   return (nextval == 0);
 }
 
+// Function: isPrime
+// Uses brute force to determine if a number n is prime
 bool isPrime(mpz_class n)
 {
   bool is_prime = true;
@@ -82,6 +95,9 @@ bool isPrime(mpz_class n)
   return is_prime;
 }
 
+// Function: generatePerfectNum
+// Generates a perfect number from n
+// Note: Assumes n can be used to create a Mersenne Prime
 mpz_class generatePerfectNum(mpz_class n)
 {
   mpz_class perfectNum;
@@ -91,6 +107,7 @@ mpz_class generatePerfectNum(mpz_class n)
   return perfectNum;
 }
 
+// Function: main
 int main()
 {
   while( true )
