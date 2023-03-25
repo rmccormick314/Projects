@@ -1,5 +1,6 @@
 # Projects
- Personal programming projects, of varying functionality.
+Personal programming projects, of varying functionality.  
+Please feel free to replicate, modify, or redistribute code.
 
 ## Project Directory
 | Project Name | Description | Language | Status |
